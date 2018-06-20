@@ -1,1 +1,1 @@
-io.write('{ "transitions": [ [0, 4], [1, 3] ] }')
+io.write('{"transitions": [ [0, 4], [1, 3] ] }')

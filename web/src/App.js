@@ -18,53 +18,56 @@ class ProblemVisualizer extends Component {
 
     const result = await fetch('/apicalllog', {
       method: "POST",
-      body: {
+      body: JSON.stringify({
         code: "flarts"
-      },
+      }),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Accept": "application/json"
       }
     });
 
-      console.log(result);
+    const apiCalls = (await result.json()).apiCalls;
+    const transitions = apiCalls.transitions;
+    console.log(transitions);
 
-    // let transitionIndex = 0;
-    //
-    // let canvas = document.getElementById('canvas');
-    // let ctx = canvas.getContext('2d');
-    //
-    // let intervalId = setInterval(
-    //   ()=> {
-    //     console.log("transindex", transitionIndex, "transitions length", transitions.length, numbers);
-    //     let xPos = 0;
-    //     let yPos = 10;
-    //     if(transitionIndex === transitions.length)
-    //     {
-    //       ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //       numbers.forEach((number) => {
-    //         console.log('number in for each', number);
-    //         Square(ctx, {x: xPos, y: yPos}, number)
-    //         xPos+= 10;
-    //       });
-    //     }
-    //     else if (transitionIndex === transitions.length + 1)
-    //     {
-    //       console.log("interval was cleared");
-    //       clearInterval(intervalId);
-    //     }
-    //     else {
-    //       ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //       numbers.forEach((number) => {
-    //         console.log('number in for each', number);
-    //         Square(ctx, {x: xPos, y: yPos}, number)
-    //         xPos+= 10;
-    //       });
-    //       let temp = numbers[ transitions[transitionIndex][0] ];
-    //       numbers[ transitions[transitionIndex][0] ] = numbers[ transitions[transitionIndex][1] ]
-    //       numbers[ transitions[transitionIndex][1] ] = temp;
-    //     }
-    //     transitionIndex++;
-    //   }, 1500);
+    let transitionIndex = 0;
+
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+
+    let intervalId = setInterval(
+      ()=> {
+        console.log("transindex", transitionIndex, "transitions length", transitions.length, numbers);
+        let xPos = 0;
+        let yPos = 10;
+        if(transitionIndex === transitions.length)
+        {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          numbers.forEach((number) => {
+            console.log('number in for each', number);
+            Square(ctx, {x: xPos, y: yPos}, number)
+            xPos+= 10;
+          });
+        }
+        else if (transitionIndex === transitions.length + 1)
+        {
+          console.log("interval was cleared");
+          clearInterval(intervalId);
+        }
+        else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          numbers.forEach((number) => {
+            console.log('number in for each', number);
+            Square(ctx, {x: xPos, y: yPos}, number)
+            xPos+= 10;
+          });
+          let temp = numbers[ transitions[transitionIndex][0] ];
+          numbers[ transitions[transitionIndex][0] ] = numbers[ transitions[transitionIndex][1] ]
+          numbers[ transitions[transitionIndex][1] ] = temp;
+        }
+        transitionIndex++;
+      }, 1500);
   }
 
   updateCanvas() {
