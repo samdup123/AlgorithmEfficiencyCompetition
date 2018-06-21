@@ -27,6 +27,8 @@ class ProblemVisualizer extends Component {
       }
     });
 
+    console.log(result)
+
     const apiCalls = (await result.json()).apiCalls;
     const transitions = apiCalls.transitions;
     console.log(transitions);
