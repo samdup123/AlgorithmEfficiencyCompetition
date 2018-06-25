@@ -2,20 +2,20 @@ package main
 
 import (
   "net/http"
-  "strings"
+  "github.com/antonholmquist/jason"
+  "github.com/gorilla/mux"
+  "fmt"
 )
 
-func sayHello(w http.ResponseWriter, r *http.Request) {
-  message := r.URL.Path
-  message = strings.TrimPrefix(message, "/")
-  message = "Hello " + message
-
-  w.Write([]byte(message))
+func HandleRequest(w http.ResponseWriter, request *http.Request) {
+  submission, err := jason.NewObjectFromReader(request.Body)
+  if err != nil { fmt.Println("blarg") }
+  code, err := submission.GetString("code")
+  w.Write([]byte(code))
 }
 
 func main() {
-  http.HandleFunc("/", sayHello)
-  if err := http.ListenAndServe(":8080", nil); err != nil {
-    panic(err)
-  }
+  router := mux.NewRouter()
+  router.HandleFunc("/submission", HandleRequest).Methods("POST")
+  http.ListenAndServe(":8080", router)
 }
