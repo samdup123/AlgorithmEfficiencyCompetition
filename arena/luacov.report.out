@@ -1,0 +1,30 @@
+==============================================================================
+./src/problem_objects/array_read_swap.lua
+==============================================================================
+ 1 local array = {}
+
+   return function(entries)
+ 2   array = entries
+ 2   return {
+ 4     read = function(index) return array[index] end,
+       swap = function(a, b)
+ 2       if array[a] and array[b] then
+ 1          local tmp = array[a]
+ 1          array[a] = array[b]
+ 1          array[b] = tmp
+         else
+ 1         error('tried to swap from an index that has no data')
+         end
+        end
+ 2   }
+   end
+
+==============================================================================
+Summary
+==============================================================================
+
+File                                      Hits Missed Coverage
+--------------------------------------------------------------
+./src/problem_objects/array_read_swap.lua 10   0      100.00%
+--------------------------------------------------------------
+Total                                     10   0      100.00%
