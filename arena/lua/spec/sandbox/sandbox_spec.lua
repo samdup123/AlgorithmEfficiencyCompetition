@@ -1,5 +1,5 @@
 local mach = require'mach'
-local Sandbox = require'sandbox/lua/sandbox'
+local Sandbox = require'sandbox/sandbox'
 
 describe('Sandbox', function()
   local communication = mach.mock_table({read = function() end, write = function() end}, 'communication')
