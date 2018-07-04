@@ -1,4 +1,4 @@
 filename: "*_spec.dart"
 
 paths:
-  - spec/problem_object
+  - spec/

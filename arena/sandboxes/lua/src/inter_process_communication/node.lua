@@ -1,3 +1,4 @@
+local json = require'../../lib/json'
 local function sleep(sec) os.execute('sleep ' .. sec) end
 
 local function _read()
@@ -6,10 +7,10 @@ local function _read()
     sleep(.01)
   until data
 
-  return data
+  return json.decode(data)
 end
 
 return {
   read = function() return _read() end,
-  write = function(data) io.stdout:write(data) end
+  write = function(data) io.stdout:write(json.encode(data)) end
 }

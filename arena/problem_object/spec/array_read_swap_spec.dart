@@ -1,5 +1,5 @@
 import "package:test/test.dart";
-import "../../src/problem_object/array_read_swap.dart";
+import "../src/array_read_swap.dart";
 
 void main() {
   test("should be able to read at an index", () {
