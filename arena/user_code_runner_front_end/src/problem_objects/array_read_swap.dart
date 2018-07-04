@@ -1,4 +1,4 @@
-local array = {}
+var array = []
 
 return function(entries)
   array = entries
