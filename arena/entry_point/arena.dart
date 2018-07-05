@@ -1,17 +1,25 @@
 import 'dart:io';
 import 'dart:convert';
 
-
 main() {
-    stdin.transform(ASCII.decoder).listen((value) {
-    Map request = JSON.decode(value);
+  final user_code = Directory.current.path + '/user_code';
+  final api = Directory.current.path + '/api.json';
+  final sandbox = Directory.current.path + '/sandboxes/lua/run.lua';
 
-    if (request["problemNumber"] == 1) {
-      Process.start('cat', []).then((Process process) {
-        process.stdout
-            .transform(UTF8.decoder)
-            .listen((data) { print(data); });
-      });
-    };
+  Process.start('lua', [sandbox, user_code, api]).then((Process process) {
+    print('opened process');
+    process.stdout.pipe(stdout);
   });
 }
+
+// import 'dart:io';
+// import 'dart:convert';
+//
+// main() {
+//   final file = Directory.current.path + '/file.lua';
+//
+//   Process.start('lua', [file]).then((Process process) {
+//     print('opened process');
+//     process.stdout.pipe(stdout);
+//   });
+// }

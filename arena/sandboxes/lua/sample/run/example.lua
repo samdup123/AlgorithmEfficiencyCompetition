@@ -1,4 +1,4 @@
-os.execute('lua ../../run.lua user_code api')
+os.execute('lua ../../run.lua user_code api.json')
 
 -- it will send you an api call
 -- respond with a value like 4
