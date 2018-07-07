@@ -16,5 +16,9 @@ class array_read_swap {
     _array[index2] = tmp;
   }
 
+  void length() {
+    return _array.length;
+  }
+
   void get array => _array;
 }

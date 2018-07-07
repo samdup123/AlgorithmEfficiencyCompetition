@@ -14,4 +14,10 @@ void main() {
     problem_object.swap(2,3);
     expect([1,2,4,3], equals(problem_object.array));
   });
+
+  test("should provide length of array", () {
+    var problem_object = new array_read_swap([1,2,3,4]);
+
+    expect(4, equals(problem_object.length()));
+  });
 }

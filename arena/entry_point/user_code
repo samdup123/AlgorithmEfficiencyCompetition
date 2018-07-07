@@ -1,1 +1,3 @@
-api.other_func(api.func())
+api.length()
+api.swap(0,4)
+api.swap(1,3)

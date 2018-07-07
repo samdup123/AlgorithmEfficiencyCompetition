@@ -1,1 +1,1 @@
-{"func": {"returns": true}, "other_func": {}}
+{"length": {"returns": true}, "read": {"params": 1, "returns": true}, "swap": {"params": 2}}
