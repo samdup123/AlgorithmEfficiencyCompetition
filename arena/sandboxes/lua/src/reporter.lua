@@ -1,5 +1,5 @@
 local json = require'../lib/json'
-
-return function(data) 
-  io.stdout:write(json.encode(data))
+local file = io.open('file', 'w')
+return function(data)
+  file:write(json.encode(data) .. '\n')
 end

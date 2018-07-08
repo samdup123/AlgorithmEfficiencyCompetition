@@ -1,6 +1,0 @@
-name: problem_objects
-version: 1.0.0
-description: floop
-author: jamapps
-dev_dependencies:
-  test: 1.2.0

@@ -1,13 +1,20 @@
-local user_code_file = arg[1]
-local api_def_file = arg[2]
+local user_code = 'api.swap(1,5);api.swap(2,4)'
+local publish = require'src.reporter'
+local array = {5, 4, 3, 2, 1}
+local problem_object =
+  {
+    swap =
+      function(a, b)
+        a = a
+        b = b
+        local temp = array[a]
+        array[a] = array[b]
+        array[b] = temp
+      end
+  }
 
-package.path = package.path .. ';/home/sam/git/api-thingy/arena/sandboxes/lua/?.lua'
+local sandbox = require'src.sandbox'(user_code, problem_object, publish)
 
-local json = require'lib.json'
-local communicator = require'src.inter_process_communication.node'
-local user_code = io.open(user_code_file):read('*a')
-local api = json.decode(io.open(api_def_file):read('*a'))
-
-local sandbox = require'src.sandbox.sandbox'(user_code, api, communicator)
-
+publish({initial =  array})
 sandbox.run()
+publish({final = array})
